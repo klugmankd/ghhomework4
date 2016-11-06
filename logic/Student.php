@@ -1,4 +1,5 @@
 <?php
+namespace logic;
 
 class Student
 {

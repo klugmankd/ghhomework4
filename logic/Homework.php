@@ -13,6 +13,10 @@ class Homework
     private $subject;
 
     /**
+     * @var int $lecturer
+     */
+    private $lecturer;
+    /**
      * @var bool $mark
      */
     private $mark;
@@ -63,5 +67,21 @@ class Homework
     public function setMark($mark)
     {
         $this->mark = $mark;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLecturer()
+    {
+        return $this->lecturer;
+    }
+
+    /**
+     * @param int $lecturer
+     */
+    public function setLecturer($lecturer)
+    {
+        $this->lecturer = $lecturer;
     }
 }

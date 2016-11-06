@@ -1,5 +1,7 @@
 <?php
 
+namespace logic;
+
 class Lecturer
 {
     /**
@@ -16,11 +18,6 @@ class Lecturer
      * @var int $department
      */
     private $department;
-    
-    /**
-     * @var array $students
-     */
-    private $students;
 
     /**
      * @return string
@@ -68,21 +65,5 @@ class Lecturer
     public function setDepartment($department)
     {
         $this->department = $department;
-    }
-
-    /**
-     * @return array
-     */
-    public function getStudents()
-    {
-        return $this->students;
-    }
-
-    /**
-     * @param array $students
-     */
-    public function setStudents($students)
-    {
-        $this->students = $students;
     }
 }

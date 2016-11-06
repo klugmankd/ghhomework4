@@ -1,5 +1,7 @@
 <?php
 
+namespace logic;
+
 class University
 {
     /**
@@ -17,6 +19,16 @@ class University
      */
     private $site;
 
+    /**
+     * @var int $yearOfFoundation
+     */
+    private $yearOfFoundation;
+
+    /**
+     * @var int $headOfUniversity
+     */
+    private $headOfUniversity;
+    
     /**
      * @return string
      */
@@ -63,5 +75,37 @@ class University
     public function setSite($site)
     {
         $this->site = $site;
+    }
+
+    /**
+     * @return int
+     */
+    public function getYearOfFoundation()
+    {
+        return $this->yearOfFoundation;
+    }
+
+    /**
+     * @param int $yearOfFoundation
+     */
+    public function setYearOfFoundation($yearOfFoundation)
+    {
+        $this->yearOfFoundation = $yearOfFoundation;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHeadOfUniversity()
+    {
+        return $this->headOfUniversity;
+    }
+
+    /**
+     * @param int $headOfUniversity
+     */
+    public function setHeadOfUniversity($headOfUniversity)
+    {
+        $this->headOfUniversity = $headOfUniversity;
     }
 }

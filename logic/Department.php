@@ -1,5 +1,7 @@
 <?php
 
+namespace logic;
+
 class Department
 {
     /**
