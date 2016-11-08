@@ -17,74 +17,83 @@
     require "../src/models/LecturerActions.php";
     require "../src/models/HomeworkActions.php";
 
-    use logic\Student;
-    use logic\Department;
-    use logic\Lecturer;
-    use logic\University;
-    use logic\Homework;
+    use \logic\Student;
+    use \logic\Department;
+    use \logic\Lecturer;
+    use \logic\University;
+    use \logic\Homework;
 
     $faker = Faker\Factory::create();
 
-    $university = new University();
-    $department = new Department();
-    $student = new Student();
-    $lecturer = new Lecturer();
-    $homework = new Homework();
+    if (isset($_POST['universities']) && !empty($_POST['universities'])) {
+        $count = $_POST['universities'];
+        for ($i = 1; $i <= $count; $i++) {
+            $university = new University();
+            $una = new UniversityActions();
 
-    $da = new DepartmentActions();
-    $una = new UniversityActions();
-    $sta = new StudentActions();
-    $la = new LecturerActions();
-    $ha = new HomeworkActions();
+            $university->setName($faker->company);
+            $university->setYearOfFoundation($faker->year);
+            $university->setCity($faker->city);
+            $university->setHeadOfUniversity($faker->name);
+            $university->setSite($faker->domainName);
 
-// HOMEWORK
-    $homework->setName($faker->word);
-    $homework->setMark($faker->boolean);
-    $homework->setLecturer($faker->numberBetween(1, 50));
-    $homework->setSubject($faker->numberBetween(45, 66));
+            $una->addRecord($university);
+        }
+    } else
+    if (isset($_POST['departments']) && !empty($_POST['departments'])) {
+        $count = $_POST['departments'];
+        for ($i = 1; $i <= $count; $i++) {
+            $department = new Department();
+            $da = new DepartmentActions();
 
-    $ha->addRecord($homework);
-//    echo $homework->getName().": ".$homework->getSubject().", ".$homework->getLecturer().", ".$homework->isMark();
+            $department->setName($faker->jobTitle);
+            $department->setHeadOfDepartment($faker->name);
+            $department->setYearOfFoundation($faker->year);
+            $department->setAddress($faker->address);
 
-// LECTURER
-    $lecturer->setName($faker->firstName);
-    $lecturer->setSurname($faker->lastName);
-    $lecturer->setDepartment($faker->numberBetween(16, 42));
+            $da->addRecord($department);
+        }
+    } else
+    if (isset($_POST['students']) && !empty($_POST['students'])) {
+        $count = $_POST['students'];
+        for ($i = 1; $i <= $count; $i++) {
+            $student = new Student();
+            $sta = new StudentActions();
 
-    $la->addRecord($lecturer);
-    echo $lecturer->getName()." ".$lecturer->getSurname();
+            $student->setName($faker->firstName);
+            $student->setSurname($faker->lastName);
+            $student->setEmail($faker->email);
+            $student->setPhoneNumber($faker->phoneNumber);
 
-// DEPARTMENT
-    $department->setName($faker->jobTitle);
-    $department->setHeadOfDepartment($faker->name);
-    $department->setYearOfFoundation($faker->year);
-    $department->setAddress($faker->address);
+            $sta->addRecord($student);
+        }
+    } else
+    if (isset($_POST['lecturers']) && !empty($_POST['lecturers'])) {
+        $count = $_POST['lecturers'];
+        for ($i = 1; $i <= $count; $i++) {
+            $lecturer = new Lecturer();
+            $la = new LecturerActions();
 
-    $da->addRecord($department);
+            $lecturer->setName($faker->firstName);
+            $lecturer->setSurname($faker->lastName);
+            $lecturer->setDepartment($faker->numberBetween(16, 42));
 
-// UNIVERSITY
-    $university->setName($faker->company);
-    $university->setYearOfFoundation($faker->year);
-    $university->setCity($faker->city);
-    $university->setHeadOfUniversity($faker->name);
-    $university->setSite($faker->domainName);
+            $la->addRecord($lecturer);
+        }
+    } else
+    if (isset($_POST['homeworks']) && !empty($_POST['homeworks'])) {
+        $count = $_POST['homeworks'];
+        for ($i = 1; $i <= $count; $i++) {
+            $homework = new Homework();
+            $ha = new HomeworkActions();
 
-    $una->addRecord($university);
+            $homework->setName($faker->word);
+            $homework->setMark($faker->boolean);
+            $homework->setLecturer($faker->numberBetween(1, 50));
+            $homework->setSubject($faker->numberBetween(45, 66));
 
-// STUDENT
-    $student->setName($faker->firstName);
-    $student->setSurname($faker->lastName);
-    $student->setEmail($faker->email);
-    $student->setPhoneNumber($faker->phoneNumber);
+            $ha->addRecord($homework);
+        }
+    }
 
-    $sta->addRecord($student);
-//    echo $student->getName()." ".$student->getSurname()."<br>";
-
-
-//    $record = $da->getRecordById(1);
-//    echo $record->name . " - " . $record->year_of_foundation;
-
-//    $records = $da->getAllRecords();
-//    foreach ($records as $record) {
-//        echo $record->name." - ".$record->year_of_foundation."<br>";
-//    }
+    header("Location: index.php");

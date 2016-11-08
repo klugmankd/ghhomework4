@@ -30,7 +30,11 @@
         $homeworkAction = new HomeworkActions();
         $records = $homeworkAction->getAllRecords();
         include_once "views/homeworks.php";
+    } else
+    if (isset($_GET['fill']) && $_GET['fill'] == "Fill tables") {
+        include_once "views/fillDB.php";
     }
 
-    include_once "includes/footer.php";
+
+include_once "includes/footer.php";
 
